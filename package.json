@@ -1,0 +1,26 @@
+{
+  "name": "weather-checker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./src/app"
+  },
+  "dependencies": {
+    "express": "~4.15.5",
+    "request": "^2.83.0",
+    "socket.io": "^2.0.4"
+  },
+  "description": "Weather Checker App\r by Steve Kane",
+  "main": "src/app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enak/weather-checker.git"
+  },
+  "author": "Steve Kane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enak/weather-checker/issues"
+  },
+  "homepage": "https://github.com/enak/weather-checker#readme"
+}

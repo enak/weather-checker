@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <title>ZIP</title>
+  </head>
+  <body>
+    <div class="container">
+        <form>
+          <div class="form-group">
+            <label for="zip">Enter a Zip Code</label>
+            <input type="text" class="form-control" id="zip" placeholder="Enter a zip code">
+          </div>
+        </form>
+      <div id="card-container" class="row">
+
+      </div>
+    </div>
+
+    <template id="card-template">
+        <div class="col-3">
+          <div class="card day">
+            <div class="card-body">
+              <h3 class="day-zip card-title">ZIP</h3>
+              <div class="day-temp">
+                <span>High:</span> <span class="day-high">HIGH</span><br>
+                <span>Low:</span> <span class="day-low">LOW</span>
+              </div>
+              <i class="fa fa-circle-o-notch fa-spin" style="font-size:24px"></i>
+            </div>
+          </div>
+        </div>
+    </template>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js" integrity="sha256-WPeFPWD3PZQUDrpFnDM1N2KadNVwCfNS4cCZ78b76T8=" crossorigin="anonymous"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>

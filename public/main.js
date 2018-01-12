@@ -1,6 +1,7 @@
 $(function() {
   var $cardContainer = $('#card-container');
   var $cardTemplate = $($('#card-template').html());
+  var daysSet = false;
 
   var zips = {};
 
@@ -43,6 +44,12 @@ $(function() {
           .text(data.high);
 
         $zipCard.find('.fa-spin').addClass('d-none');
+
+        if (!daysSet) {
+          daysSet = true;
+
+          createDays(data.days, socket);
+        }
       })
 
       $zipCard
@@ -52,5 +59,17 @@ $(function() {
         })
         .appendTo($cardContainer);
     }
-  })
+  });
+
+  function createDays(days, socket) {
+    for (var i = 1; i <= 4; i++) {
+      $('.day-text').eq(i-1)
+        .text(days[i-1])
+        .on('click', function(i) {
+          return function() {
+            socket.emit('change day', i);
+          }
+        }(i-1))
+    }
+  }
 });

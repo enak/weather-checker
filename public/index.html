@@ -13,12 +13,27 @@
   </head>
   <body>
     <div class="container">
-        <form>
-          <div class="form-group">
-            <label for="zip">Enter a Zip Code</label>
-            <input type="text" class="form-control" id="zip" placeholder="Enter a zip code">
-          </div>
-        </form>
+      <p>Change the day for all app users.</p> 
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+          <input type="radio" name="options" id="option1" autocomplete="off" value="0"><span class="day-text"></span>
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option2" autocomplete="off" value="1"><span class="day-text"></span>
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option3" autocomplete="off" value="2"><span class="day-text"></span>
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option4" autocomplete="off" value="3"><span class="day-text"></span>
+        </label>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="zip">Enter a Zip Code</label>
+          <input type="text" class="form-control" id="zip" placeholder="Enter a zip code">
+        </div>
+      </form>
       <div id="card-container" class="row">
 
       </div>

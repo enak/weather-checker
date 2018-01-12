@@ -8,12 +8,13 @@ if (!process.env.WUNDERGROUND) {
 
 const io = require('./io');
 const weatherClient = require('./weather')(process.env.WUNDERGROUND);
+let day = 0;
 
 function sendWeather(weatherSocket) {
   weatherClient.getWeather(weatherSocket.getZip(), (function(weatherSocket) {
     return function (data) {
-      var today = data.data.forecast.simpleforecast.forecastday[0];
-      weatherSocket.updateTempurature(today.high.fahrenheit, today.low.fahrenheit);
+      var today = data.data.forecast.simpleforecast.forecastday[day];
+      weatherSocket.updateTempurature(today.high.fahrenheit, today.low.fahrenheit, data);
     };
   })(weatherSocket));
 }
@@ -21,6 +22,13 @@ function sendWeather(weatherSocket) {
 var sockets = [];
 io.on('connection', function(socket) {
   sockets.push(new WeatherSocket(socket));
+
+  socket.on('change day', function(newDay) {
+    if (day != newDay) {
+      day = newDay;
+      updateAll();
+    }
+  });
 });
 
 class WeatherSocket {
@@ -37,9 +45,11 @@ class WeatherSocket {
     })
   }
 
-  updateTempurature(high, low) {
+  updateTempurature(high, low, data) {
+    var days = data.data.forecast.simpleforecast.forecastday.map(function (forecast) {return forecast.date.weekday});
+
     this.socket.emit('set temp', {
-      high, low
+      high, low, days
     });
   }
 
@@ -56,10 +66,14 @@ class WeatherSocket {
   }
 }
 
-setInterval(function() {
+function updateAll() {
   sockets.forEach(function(weatherSocket) {
     sendWeather(weatherSocket);
   });
+}
+
+setInterval(function() {
+  updateAll();
 }, 30000);
 
 setInterval(function() {

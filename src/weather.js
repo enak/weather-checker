@@ -1,5 +1,6 @@
 /** Reach out to Weather Underground to get the forecast. */
-var request = require('request');
+const nimbus = require('@nnelson/nimbus')();
+const dataFeature = nimbus.getDataFeaturesService('<API_KEY>', '<DATAFEATURE>');
 
 function getUrl(key, zip) {
   return 'http://api.wunderground.com/api/' + key + '/forecast/q/' + zip + '.json';
@@ -8,10 +9,16 @@ function getUrl(key, zip) {
 class WeatherClient {
   constructor (key) {
     this.key = key;
+    this.dataFeature = nimbus.getDataFeaturesService(this.key, 'forecast');
   }
 
   getWeather(zip, callback) {
-    request(getUrl(this.key, zip), callback);
+    if (!zip) return;
+    this.dataFeature.getDataByZipCodeUS(zip)
+      .then(callback)
+      .catch(function(error) {
+        console.log('something bad is caught', error);
+      });
   }
 }
 

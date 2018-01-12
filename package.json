@@ -6,6 +6,7 @@
     "start": "node ./src/app"
   },
   "dependencies": {
+    "@nnelson/nimbus": "^0.1.1",
     "express": "~4.15.5",
     "request": "^2.83.0",
     "socket.io": "^2.0.4"

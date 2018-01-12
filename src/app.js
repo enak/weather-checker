@@ -11,16 +11,8 @@ const weatherClient = require('./weather')(process.env.WUNDERGROUND);
 
 function sendWeather(weatherSocket) {
   weatherClient.getWeather(weatherSocket.getZip(), (function(weatherSocket) {
-    return function (error, response, body) {
-      if (error) {
-        console.log('error:', error);
-        return;
-      }
-
-      console.log('request status code:', response && response.statusCode);
-
-      var data = JSON.parse(body);
-      var today = data.forecast.simpleforecast.forecastday[0];
+    return function (data) {
+      var today = data.data.forecast.simpleforecast.forecastday[0];
       weatherSocket.updateTempurature(today.high.fahrenheit, today.low.fahrenheit);
     };
   })(weatherSocket));
